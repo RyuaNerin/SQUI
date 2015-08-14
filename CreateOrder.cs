@@ -28,66 +28,66 @@ namespace SQUI
 
             TextBoxdeparture.Text = d.DepartureFolder;
             TextBoxDestination.Text = d.DestinationFolder;
-
-            var str = string.Empty;
+            
+            var sb = new StringBuilder();
             if (d.Option.FileExtensions.Count > 0)
             {
                 CheckBoxFileExtensions.Checked = true;
                 TextBoxFileExtensions.Enabled = true;
                 for (int i = 0; i < d.Option.FileExtensions.Count; i++)
                 {
-                    str += d.Option.FileExtensions[i];
+                    sb.Append(d.Option.FileExtensions[i]);
                     if (d.Option.FileExtensions.Count - 1 != i)
                     {
-                        str += " ";
+                        sb.Append(" ");
                     }
                 }
-                TextBoxFileExtensions.Text = str;
+                TextBoxFileExtensions.Text = sb.ToString();
+                if (sb.Length > 0) sb.Remove(0, sb.Length);
             }
             if (d.Option.IncludeStrings.Count > 0)
             {
                 CheckBoxIncludes.Checked = true;
                 TextBoxInclude.Enabled = true;
-                str = string.Empty;
                 for (int i = 0; i < d.Option.IncludeStrings.Count; i++)
                 {
-                    str += d.Option.IncludeStrings[i];
+                    sb.Append(d.Option.IncludeStrings[i]);
                     if (d.Option.IncludeStrings.Count - 1 != i)
                     {
-                        str += " ";
+                        sb.Append(" ");
                     }
                 }
-                TextBoxInclude.Text = str;
+                TextBoxInclude.Text = sb.ToString();
+                if (sb.Length > 0) sb.Remove(0, sb.Length);
             }
             if (d.Option.DecludeStrings.Count > 0)
             {
                 CheckBoxDecludeStrings.Checked = true;
                 TextBoxDecludeStrings.Enabled = true;
-                str = string.Empty;
                 for (int i = 0; i < d.Option.DecludeStrings.Count; i++)
                 {
-                    str += d.Option.DecludeStrings[i];
+                    sb.Append(d.Option.DecludeStrings[i]);
                     if (d.Option.DecludeStrings.Count - 1 != i)
                     {
-                        str += " ";
+                        sb.Append(" ");
                     }
                 }
-                TextBoxDecludeStrings.Text = str;
+                TextBoxInclude.Text = sb.ToString();
+                if (sb.Length > 0) sb.Remove(0, sb.Length);
             }
             if (d.Option.OptionStrings.Count > 0)
             {
                 CheckBoxOptions.Checked = true;
                 TextBoxOptionStrings.Enabled = true;
-                str = string.Empty;
                 for (int i = 0; i < d.Option.OptionStrings.Count; i++)
                 {
-                    str += d.Option.OptionStrings[i];
+                    sb.Append(d.Option.OptionStrings[i]);
                     if (d.Option.OptionStrings.Count - 1 != i)
                     {
-                        str += " ";
+                        sb.Append(" ");
                     }
                 }
-                TextBoxOptionStrings.Text = str;
+                TextBoxOptionStrings.Text = sb.ToString();
             }
 
             RadioIsCopy.Checked = d.Option.isCopy;

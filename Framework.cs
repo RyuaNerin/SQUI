@@ -24,11 +24,13 @@ namespace SQUI
 
                     if (!Directory.Exists(order.DepartureFolder))
                     {
-                        MessageBox.Show("[ " + order.DepartureFolder + " ]는 올바른 경로가 아닙니다");
+                        MessageBox.Show(string.Format("[ {0} ]는 올바른 경로가 아닙니다", order.DepartureFolder));
+                        return;
                     }
                     if (!Directory.Exists(order.DestinationFolder))
                     {
-                        MessageBox.Show("[ " + order.DestinationFolder + " ]는 올바른 경로가 아닙니다");
+                        MessageBox.Show(string.Format("[ {0} ]는 올바른 경로가 아닙니다", order.DestinationFolder));
+                        return;
                     }
 
                     Process(order.DepartureFolder, order);
@@ -65,7 +67,7 @@ namespace SQUI
                 {
                     foreach (var item in order.Option.FileExtensions)
                     {
-                        if (Path.GetExtension(fn).ToLower() == item.ToLower())
+                                if (Path.GetExtension(fn) == item)
                         {
                             extensionPass = true;
                         }
@@ -107,7 +109,7 @@ namespace SQUI
                 if (extensionPass && includePass && decludePass && optionPass)
                 {
                     var c_dir = a_dir.Replace(order.DepartureFolder, order.DestinationFolder);
-                    var dest = c_dir + '/' + fn;
+                    var dest = Path.Combine(c_dir, fn);
                     if (File.Exists(dest))
                     {
                         bool np = false;
@@ -116,7 +118,15 @@ namespace SQUI
                             case DuplicateProcessing.Overwrite:
                                 break;
                             case DuplicateProcessing.Renaming:
-                                dest += "(" + DateTime.Now.Ticks + ")";
+                                dest = Path.Combine(
+                                     Path.GetDirectoryName(dest),
+                                     string.Format(
+                                         "{0} ({1}){2}",
+                                         Path.GetFileNameWithoutExtension(dest),
+                                         DateTime.Now.Ticks,
+                                         Path.GetExtension(dest)
+                                     )
+                                 );
                                 break;
                             case DuplicateProcessing.None:
                                 np = true;

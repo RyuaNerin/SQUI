@@ -47,46 +47,49 @@ namespace SQUI
                 var gen = new ListViewItem((item.Enabled) ? "켜짐" : "꺼짐");
                 gen.SubItems.Add(item.DepartureFolder);
                 gen.SubItems.Add(item.DestinationFolder);
-                var str = string.Empty;
+                var sb = new StringBuilder();
                 for (int i = 0; i < item.Option.FileExtensions.Count; i++)
                 {
-                    str += item.Option.FileExtensions[i];
+                    sb.Append(item.Option.FileExtensions[i]);
                     if (item.Option.FileExtensions.Count - 1 != i)
                     {
-                        str += ", ";
+                        sb.Append(", ");
                     }
                 }
-                gen.SubItems.Add(str);
-                str = string.Empty;
+                gen.SubItems.Add(sb.ToString());
+                if (sb.Length > 0) sb.Remove(0, sb.Length);
+
                 for (int i = 0; i < item.Option.IncludeStrings.Count; i++)
                 {
-                    str += item.Option.IncludeStrings[i];
+                    sb.Append(item.Option.IncludeStrings[i]);
                     if (item.Option.IncludeStrings.Count - 1 != i)
                     {
-                        str += ", ";
+                        sb.Append(", ");
                     }
                 }
-                gen.SubItems.Add(str);
-                str = string.Empty;
+                gen.SubItems.Add(sb.ToString());
+                if (sb.Length > 0) sb.Remove(0, sb.Length);
+
                 for (int i = 0; i < item.Option.DecludeStrings.Count; i++)
                 {
-                    str += item.Option.DecludeStrings[i];
+                    sb.Append(item.Option.DecludeStrings[i]);
                     if (item.Option.DecludeStrings.Count - 1 != i)
                     {
-                        str += ", ";
+                        sb.Append(", ");
                     }
                 }
-                gen.SubItems.Add(str);
-                str = string.Empty;
+                gen.SubItems.Add(sb.ToString());
+                if (sb.Length > 0) sb.Remove(0, sb.Length);
+
                 for (int i = 0; i < item.Option.OptionStrings.Count; i++)
                 {
-                    str += item.Option.OptionStrings[i];
+                    sb.Append(item.Option.OptionStrings[i]);
                     if (item.Option.OptionStrings.Count - 1 != i)
                     {
-                        str += ", ";
+                        sb.Append(", ");
                     }
                 }
-                gen.SubItems.Add(str);
+                gen.SubItems.Add(sb.ToString());
                 gen.SubItems.Add((item.Option.isCopy) ? "복사" : "이동");
 
                 var dpstr = string.Empty;
