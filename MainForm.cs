@@ -101,22 +101,31 @@ namespace SQUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Setting.Orders.RemoveAt(listView1.SelectedItems[0].Index);
-            listView1.Items.Remove(listView1.SelectedItems[0]);
+            if (listView1.SelectedItems.Count > 0)
+            {
+                Setting.Orders.RemoveAt(listView1.SelectedItems[0].Index);
+                listView1.Items.Remove(listView1.SelectedItems[0]);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var i = listView1.SelectedItems[0].Index;
-            var frm = new CreateOrder(Setting.Orders[i], i);
-            frm.ShowDialog();
-            RefrashOrderList();
+            if (listView1.SelectedItems.Count > 0)
+            {
+                var i = listView1.SelectedItems[0].Index;
+                var frm = new CreateOrder(Setting.Orders[i], i);
+                frm.ShowDialog();
+                RefrashOrderList();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Setting.Orders[listView1.SelectedItems[0].Index].Enabled = !Setting.Orders[listView1.SelectedItems[0].Index].Enabled;
-            RefrashOrderList();
+            if (listView1.SelectedItems.Count > 0)
+            {
+                Setting.Orders[listView1.SelectedItems[0].Index].Enabled = !Setting.Orders[listView1.SelectedItems[0].Index].Enabled;
+                RefrashOrderList();
+            }
         }
     }
 }
