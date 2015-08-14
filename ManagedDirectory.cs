@@ -72,15 +72,20 @@ namespace SQUI
         /// </summary>
         public bool isCopy { get; set; }
 
+        public DuplicateProcessing Duplicate { get; private set; }
+
         #endregion
 
-        public Option(string[] extensions, string[] includes, string[] decluides, string[] options, bool isCopy)
+        public Option(string[] extensions, string[] includes, string[] decluides, string[] options, bool isCopy, DuplicateProcessing dp)
         {
             FileExtensions = extensions.ToList();
             IncludeStrings = includes.ToList();
             DecludeStrings = decluides.ToList();
             OptionStrings = options.ToList();
             this.isCopy = isCopy;
+            Duplicate = dp;
         }
     }
+
+    public enum DuplicateProcessing { Overwrite, Renaming, None }
 }

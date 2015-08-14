@@ -93,9 +93,29 @@ namespace SQUI
                             var dest = order.DestinationFolder + '/' + fn;
                             if (File.Exists(dest))
                             {
-                                dest += "(" + DateTime.Now.Ticks + ")";
+                                bool np = false;
+                                switch (order.Option.Duplicate)
+                                {
+                                    case DuplicateProcessing.Overwrite:
+                                        break;
+                                    case DuplicateProcessing.Renaming:
+                                        dest += "(" + DateTime.Now.Ticks + ")";
+                                        break;
+                                    case DuplicateProcessing.None:
+                                        np = true;
+                                        break;
+                                }
+                                if (np) continue;
                             }
-                            File.Move(file, dest);
+
+                            if(order.Option.isCopy)
+                            {
+                                File.Copy(file, dest);
+                            }
+                            else
+                            {
+                                File.Move(file, dest);
+                            }
                         }
 
                     }

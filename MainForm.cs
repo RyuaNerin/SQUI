@@ -86,6 +86,22 @@ namespace SQUI
                 }
                 gen.SubItems.Add(str);
                 gen.SubItems.Add((item.Option.isCopy) ? "복사" : "이동");
+
+                var dpstr = string.Empty;
+                if (item.Option.Duplicate == DuplicateProcessing.Overwrite)
+                {
+                    dpstr = "새 파일로 덮어쓰기";
+                }
+                else if (item.Option.Duplicate == DuplicateProcessing.Renaming)
+                {
+                    dpstr  = "이름 뒤에 고유한 숫자 추가";
+                }
+                else if (item.Option.Duplicate == DuplicateProcessing.None)
+                {
+                    dpstr = "이동하지 않음";
+                }
+                gen.SubItems.Add(dpstr);
+
                 listView1.Items.Add(gen);
             }
         }

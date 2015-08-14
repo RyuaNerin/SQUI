@@ -91,7 +91,21 @@ namespace SQUI
             }
 
             RadioIsCopy.Checked = d.Option.isCopy;
-            RadioIsCopy.Checked = !d.Option.isCopy;
+            RadioIsMove.Checked = !d.Option.isCopy;
+
+            if(d.Option.Duplicate == DuplicateProcessing.Overwrite)
+            {
+                comboBox1.Text = "새 파일로 덮어쓰기";
+            }
+            else if(d.Option.Duplicate == DuplicateProcessing.Renaming)
+            {
+                comboBox1.Text = "이름 뒤에 고유한 숫자 추가";
+            }
+            else if(d.Option.Duplicate == DuplicateProcessing.None)
+            {
+                comboBox1.Text = "이동하지 않음";
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -136,12 +150,24 @@ namespace SQUI
             if (CheckBoxOptions.Checked == false) TextBoxOptionStrings.Text = string.Empty;
             if (CheckBoxDecludeStrings.Checked == false) TextBoxDecludeStrings.Text = string.Empty;
             if (CheckBoxFileExtensions.Checked == false) TextBoxFileExtensions.Text = string.Empty;
+
+            DuplicateProcessing dp = DuplicateProcessing.None;
+            if (comboBox1.Text == "새 파일로 덮어쓰기")
+            {
+                dp = DuplicateProcessing.Overwrite;
+            }
+            else if (comboBox1.Text == "이름 뒤에 고유한 숫자 추가")
+            {
+                dp = DuplicateProcessing.Renaming;
+            }
+
             var option = new Option(
                     (string.IsNullOrEmpty(TextBoxFileExtensions.Text)) ? new string[] { } : (TextBoxFileExtensions.Text.Contains(' ')) ? TextBoxFileExtensions.Text.Split(new char[] { ' ' }) : new string[] { TextBoxFileExtensions.Text },
                     (string.IsNullOrEmpty(TextBoxInclude.Text)) ? new string[] { } : (TextBoxInclude.Text.Contains(' ')) ? TextBoxInclude.Text.Split(new char[] { ' ' }) : new string[] { TextBoxInclude.Text },
                     (string.IsNullOrEmpty(TextBoxDecludeStrings.Text)) ? new string[] { } : (TextBoxDecludeStrings.Text.Contains(' ')) ? TextBoxDecludeStrings.Text.Split(new char[] { ' ' }) : new string[] { TextBoxDecludeStrings.Text },
                     (string.IsNullOrEmpty(TextBoxOptionStrings.Text)) ? new string[] { } : (TextBoxOptionStrings.Text.Contains(' ')) ? TextBoxOptionStrings.Text.Split(new char[] { ' ' }) : new string[] { TextBoxOptionStrings.Text },
-                    RadioIsCopy.Checked
+                    RadioIsCopy.Checked,
+                    dp
                     );
             if(this.index == -1) // new obj
             {

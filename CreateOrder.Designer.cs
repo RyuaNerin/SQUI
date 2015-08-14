@@ -48,6 +48,8 @@
             this.tooltip = new System.Windows.Forms.Label();
             this.RadioIsCopy = new System.Windows.Forms.RadioButton();
             this.RadioIsMove = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextBoxdeparture
@@ -118,7 +120,7 @@
             // 
             // TextBoxInclude
             // 
-            this.TextBoxInclude.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBoxInclude.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxInclude.Enabled = false;
             this.TextBoxInclude.Location = new System.Drawing.Point(192, 86);
@@ -130,7 +132,7 @@
             // 
             // TextBoxOptionStrings
             // 
-            this.TextBoxOptionStrings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBoxOptionStrings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxOptionStrings.Enabled = false;
             this.TextBoxOptionStrings.Location = new System.Drawing.Point(192, 113);
@@ -142,7 +144,7 @@
             // 
             // TextBoxDecludeStrings
             // 
-            this.TextBoxDecludeStrings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBoxDecludeStrings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxDecludeStrings.Enabled = false;
             this.TextBoxDecludeStrings.Location = new System.Drawing.Point(192, 140);
@@ -154,7 +156,7 @@
             // 
             // TextBoxFileExtensions
             // 
-            this.TextBoxFileExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBoxFileExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxFileExtensions.Enabled = false;
             this.TextBoxFileExtensions.Location = new System.Drawing.Point(192, 167);
@@ -166,7 +168,6 @@
             // 
             // CheckBoxIncludes
             // 
-            this.CheckBoxIncludes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CheckBoxIncludes.AutoSize = true;
             this.CheckBoxIncludes.Location = new System.Drawing.Point(14, 89);
             this.CheckBoxIncludes.Name = "CheckBoxIncludes";
@@ -179,7 +180,6 @@
             // 
             // CheckBoxOptions
             // 
-            this.CheckBoxOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CheckBoxOptions.AutoSize = true;
             this.CheckBoxOptions.Location = new System.Drawing.Point(14, 116);
             this.CheckBoxOptions.Name = "CheckBoxOptions";
@@ -192,7 +192,6 @@
             // 
             // CheckBoxDecludeStrings
             // 
-            this.CheckBoxDecludeStrings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CheckBoxDecludeStrings.AutoSize = true;
             this.CheckBoxDecludeStrings.Location = new System.Drawing.Point(14, 143);
             this.CheckBoxDecludeStrings.Name = "CheckBoxDecludeStrings";
@@ -205,7 +204,6 @@
             // 
             // CheckBoxFileExtensions
             // 
-            this.CheckBoxFileExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CheckBoxFileExtensions.AutoSize = true;
             this.CheckBoxFileExtensions.Location = new System.Drawing.Point(14, 170);
             this.CheckBoxFileExtensions.Name = "CheckBoxFileExtensions";
@@ -219,7 +217,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(395, 218);
+            this.button3.Location = new System.Drawing.Point(395, 241);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
@@ -230,7 +228,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(314, 218);
+            this.button4.Location = new System.Drawing.Point(314, 241);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 7;
@@ -270,11 +268,35 @@
             this.RadioIsMove.Text = "이동";
             this.RadioIsMove.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "새 파일로 덮어쓰기",
+            "이름 뒤에 고유한 숫자 추가",
+            "이동하지 않음"});
+            this.comboBox1.Location = new System.Drawing.Point(103, 203);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(155, 20);
+            this.comboBox1.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 206);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 12);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "중복 파일 처리";
+            // 
             // CreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 253);
+            this.ClientSize = new System.Drawing.Size(482, 276);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.RadioIsMove);
             this.Controls.Add(this.RadioIsCopy);
             this.Controls.Add(this.tooltip);
@@ -327,5 +349,7 @@
         private System.Windows.Forms.Label tooltip;
         private System.Windows.Forms.RadioButton RadioIsCopy;
         private System.Windows.Forms.RadioButton RadioIsMove;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
