@@ -105,6 +105,8 @@ namespace SQUI
             {
                 comboBox1.Text = "이동하지 않음";
             }
+
+            RootSearch.Checked = d.Option.RootSerach;
             
         }
 
@@ -167,7 +169,8 @@ namespace SQUI
                     (string.IsNullOrEmpty(TextBoxDecludeStrings.Text)) ? new string[] { } : (TextBoxDecludeStrings.Text.Contains(' ')) ? TextBoxDecludeStrings.Text.Split(new char[] { ' ' }) : new string[] { TextBoxDecludeStrings.Text },
                     (string.IsNullOrEmpty(TextBoxOptionStrings.Text)) ? new string[] { } : (TextBoxOptionStrings.Text.Contains(' ')) ? TextBoxOptionStrings.Text.Split(new char[] { ' ' }) : new string[] { TextBoxOptionStrings.Text },
                     RadioIsCopy.Checked,
-                    dp
+                    dp,
+                    RootSearch.Checked
                     );
             if(this.index == -1) // new obj
             {

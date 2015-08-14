@@ -40,10 +40,12 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.frameworkRunner = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // RunButton
@@ -80,12 +82,13 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader9});
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(13, 71);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(959, 228);
+            this.listView1.Size = new System.Drawing.Size(1034, 228);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -108,25 +111,25 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.DisplayIndex = 4;
+            this.columnHeader3.DisplayIndex = 6;
             this.columnHeader3.Text = "확장자";
             this.columnHeader3.Width = 90;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.DisplayIndex = 6;
+            this.columnHeader4.DisplayIndex = 7;
             this.columnHeader4.Text = "모두 포함";
             this.columnHeader4.Width = 90;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.DisplayIndex = 7;
+            this.columnHeader5.DisplayIndex = 8;
             this.columnHeader5.Text = "제외";
             this.columnHeader5.Width = 90;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.DisplayIndex = 8;
+            this.columnHeader6.DisplayIndex = 9;
             this.columnHeader6.Text = "포함";
             this.columnHeader6.Width = 90;
             // 
@@ -135,6 +138,12 @@
             this.columnHeader7.DisplayIndex = 3;
             this.columnHeader7.Text = "유형";
             this.columnHeader7.Width = 50;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 4;
+            this.columnHeader8.Text = "중복 처리";
+            this.columnHeader8.Width = 83;
             // 
             // button2
             // 
@@ -166,17 +175,21 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // columnHeader8
+            // columnHeader9
             // 
-            this.columnHeader8.DisplayIndex = 5;
-            this.columnHeader8.Text = "중복 처리";
-            this.columnHeader8.Width = 110;
+            this.columnHeader9.DisplayIndex = 5;
+            this.columnHeader9.Text = "하위 폴더";
+            this.columnHeader9.Width = 80;
+            // 
+            // frameworkRunner
+            // 
+            this.frameworkRunner.DoWork += new System.ComponentModel.DoWorkEventHandler(this.frameworkRunner_DoWork);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 311);
+            this.ClientSize = new System.Drawing.Size(1059, 311);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -208,5 +221,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.ComponentModel.BackgroundWorker frameworkRunner;
     }
 }

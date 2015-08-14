@@ -72,11 +72,19 @@ namespace SQUI
         /// </summary>
         public bool isCopy { get; set; }
 
+        /// <summary>
+        /// 중복 파일의 처리 방식입니다.
+        /// </summary>
         public DuplicateProcessing Duplicate { get; private set; }
+
+        /// <summary>
+        /// 하위 디렉터리도 포함해서 작업할것인지 여부입니다.
+        /// </summary>
+        public bool RootSerach { get; private set; }
 
         #endregion
 
-        public Option(string[] extensions, string[] includes, string[] decluides, string[] options, bool isCopy, DuplicateProcessing dp)
+        public Option(string[] extensions, string[] includes, string[] decluides, string[] options, bool isCopy, DuplicateProcessing dp, bool root)
         {
             FileExtensions = extensions.ToList();
             IncludeStrings = includes.ToList();
@@ -84,6 +92,7 @@ namespace SQUI
             OptionStrings = options.ToList();
             this.isCopy = isCopy;
             Duplicate = dp;
+            RootSerach = root;
         }
     }
 

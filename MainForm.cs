@@ -22,7 +22,9 @@ namespace SQUI
 
         private void RunButton_Click(object sender, EventArgs e)
         {
-            framework.Run();
+            frameworkRunner.RunWorkerAsync();
+            RunButton.Enabled = button1.Enabled = button2.Enabled = button3.Enabled = button4.Enabled = listView1.Enabled = false;
+
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -94,14 +96,14 @@ namespace SQUI
                 }
                 else if (item.Option.Duplicate == DuplicateProcessing.Renaming)
                 {
-                    dpstr  = "이름 뒤에 고유한 숫자 추가";
+                    dpstr = "이름 뒤에 고유한 숫자 추가";
                 }
                 else if (item.Option.Duplicate == DuplicateProcessing.None)
                 {
                     dpstr = "이동하지 않음";
                 }
                 gen.SubItems.Add(dpstr);
-
+                gen.SubItems.Add((item.Option.RootSerach) ? "포함" : "미포함");
                 listView1.Items.Add(gen);
             }
         }
@@ -141,6 +143,18 @@ namespace SQUI
             {
                 Setting.Orders[listView1.SelectedItems[0].Index].Enabled = !Setting.Orders[listView1.SelectedItems[0].Index].Enabled;
                 RefrashOrderList();
+            }
+        }
+
+        private void frameworkRunner_DoWork(object sender, DoWorkEventArgs e)
+        {
+            framework.Run();
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    RunButton.Enabled = button1.Enabled = button2.Enabled = button3.Enabled = button4.Enabled = listView1.Enabled = true;
+                }));
             }
         }
     }
