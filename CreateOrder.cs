@@ -39,7 +39,7 @@ namespace SQUI
                     sb.Append(d.Option.FileExtensions[i]);
                     if (d.Option.FileExtensions.Count - 1 != i)
                     {
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                 }
                 TextBoxFileExtensions.Text = sb.ToString();
@@ -54,7 +54,7 @@ namespace SQUI
                     sb.Append(d.Option.IncludeStrings[i]);
                     if (d.Option.IncludeStrings.Count - 1 != i)
                     {
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                 }
                 TextBoxInclude.Text = sb.ToString();
@@ -69,7 +69,7 @@ namespace SQUI
                     sb.Append(d.Option.DecludeStrings[i]);
                     if (d.Option.DecludeStrings.Count - 1 != i)
                     {
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                 }
                 TextBoxInclude.Text = sb.ToString();
@@ -84,7 +84,7 @@ namespace SQUI
                     sb.Append(d.Option.OptionStrings[i]);
                     if (d.Option.OptionStrings.Count - 1 != i)
                     {
-                        sb.Append(" ");
+                        sb.Append(' ');
                     }
                 }
                 TextBoxOptionStrings.Text = sb.ToString();
