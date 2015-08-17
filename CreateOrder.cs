@@ -164,10 +164,10 @@ namespace SQUI
             }
 
             var option = new Option(
-                    (string.IsNullOrEmpty(TextBoxFileExtensions.Text)) ? new string[] { } : (TextBoxFileExtensions.Text.Contains(' ')) ? TextBoxFileExtensions.Text.Split(new char[] { ' ' }) : new string[] { TextBoxFileExtensions.Text },
-                    (string.IsNullOrEmpty(TextBoxInclude.Text)) ? new string[] { } : (TextBoxInclude.Text.Contains(' ')) ? TextBoxInclude.Text.Split(new char[] { ' ' }) : new string[] { TextBoxInclude.Text },
-                    (string.IsNullOrEmpty(TextBoxDecludeStrings.Text)) ? new string[] { } : (TextBoxDecludeStrings.Text.Contains(' ')) ? TextBoxDecludeStrings.Text.Split(new char[] { ' ' }) : new string[] { TextBoxDecludeStrings.Text },
-                    (string.IsNullOrEmpty(TextBoxOptionStrings.Text)) ? new string[] { } : (TextBoxOptionStrings.Text.Contains(' ')) ? TextBoxOptionStrings.Text.Split(new char[] { ' ' }) : new string[] { TextBoxOptionStrings.Text },
+                    TextBoxFileExtensions.Text.Split(' '),
+                    TextBoxInclude.Text.Split(' '),
+                    TextBoxDecludeStrings.Text.Split(' '),
+                    TextBoxOptionStrings.Text.Split(' '),
                     RadioIsCopy.Checked,
                     dp,
                     RootSearch.Checked
