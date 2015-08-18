@@ -17,6 +17,7 @@ namespace SQUI
         {
             InitializeComponent();
             folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            this.dubCombobox.Text = Properties.Resources.OverwriteString;
             index = -1; // new
         }
 
@@ -25,8 +26,11 @@ namespace SQUI
             InitializeComponent();
             folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             this.index = index;
-            Watcher.Stop(d.WatcherIndex);
-            Watcher.Remove(d.WatcherIndex);
+            if(d.WatcherIndex > 0)
+            {
+                Watcher.Stop(d.WatcherIndex);
+                Watcher.Remove(d.WatcherIndex);
+            }
 
             TextBoxdeparture.Text = d.DepartureFolder;
             TextBoxDestination.Text = d.DestinationFolder;
@@ -98,15 +102,15 @@ namespace SQUI
             if(d.Option.Duplicate == DuplicateProcessing.Overwrite)
             {
                 
-                comboBox1.Text = Properties.Resources.OverwriteString;
+                dubCombobox.Text = Properties.Resources.OverwriteString;
             }
             else if(d.Option.Duplicate == DuplicateProcessing.Renaming)
             {
-                comboBox1.Text = Properties.Resources.RenamingString;
+                dubCombobox.Text = Properties.Resources.RenamingString;
             }
             else if(d.Option.Duplicate == DuplicateProcessing.None)
             {
-                comboBox1.Text = Properties.Resources.NoneString;
+                dubCombobox.Text = Properties.Resources.NoneString;
             }
 
             RootSearch.Checked = d.Option.RootSerach;
@@ -158,11 +162,11 @@ namespace SQUI
             if (CheckBoxFileExtensions.Checked == false) TextBoxFileExtensions.Text = string.Empty;
 
             DuplicateProcessing dp = DuplicateProcessing.None;
-            if (comboBox1.Text == Properties.Resources.OverwriteString)
+            if (dubCombobox.Text == Properties.Resources.OverwriteString)
             {
                 dp = DuplicateProcessing.Overwrite;
             }
-            else if (comboBox1.Text == Properties.Resources.RenamingString)
+            else if (dubCombobox.Text == Properties.Resources.RenamingString)
             {
                 dp = DuplicateProcessing.Renaming;
             }

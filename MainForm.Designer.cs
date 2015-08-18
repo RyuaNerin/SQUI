@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.RunButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -48,6 +47,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.frameworkRunner = new System.ComponentModel.BackgroundWorker();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.trayContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.종료ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.열기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.오더실행ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.trayContext.SuspendLayout();
             this.SuspendLayout();
             // 
             // RunButton
@@ -189,9 +194,46 @@
             // 
             // trayIcon
             // 
-            this.trayIcon.Text = "TrayIcon";
+            this.trayIcon.ContextMenuStrip = this.trayContext;
+            this.trayIcon.Icon = global::SQUI.Properties.Resources.icon;
+            this.trayIcon.Text = "SQUI";
             this.trayIcon.Visible = true;
-            this.trayIcon.Icon = Properties.Resources.icon;
+            // 
+            // trayContext
+            // 
+            this.trayContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.오더실행ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.열기ToolStripMenuItem,
+            this.종료ToolStripMenuItem});
+            this.trayContext.Name = "trayContext";
+            this.trayContext.Size = new System.Drawing.Size(127, 76);
+            // 
+            // 종료ToolStripMenuItem
+            // 
+            this.종료ToolStripMenuItem.Name = "종료ToolStripMenuItem";
+            this.종료ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.종료ToolStripMenuItem.Text = "종료";
+            this.종료ToolStripMenuItem.Click += new System.EventHandler(this.종료ToolStripMenuItem_Click);
+            // 
+            // 열기ToolStripMenuItem
+            // 
+            this.열기ToolStripMenuItem.Name = "열기ToolStripMenuItem";
+            this.열기ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.열기ToolStripMenuItem.Text = "창 열기";
+            this.열기ToolStripMenuItem.Click += new System.EventHandler(this.열기ToolStripMenuItem_Click);
+            // 
+            // 오더실행ToolStripMenuItem
+            // 
+            this.오더실행ToolStripMenuItem.Name = "오더실행ToolStripMenuItem";
+            this.오더실행ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.오더실행ToolStripMenuItem.Text = "오더 실행";
+            this.오더실행ToolStripMenuItem.Click += new System.EventHandler(this.오더실행ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // MainForm
             // 
@@ -204,10 +246,11 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.RunButton);
-            this.Icon = Properties.Resources.icon;
+            this.Icon = global::SQUI.Properties.Resources.icon;
             this.Name = "MainForm";
             this.Text = "SQUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.trayContext.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -232,5 +275,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.ComponentModel.BackgroundWorker frameworkRunner;
         private System.Windows.Forms.NotifyIcon trayIcon;
+        private System.Windows.Forms.ContextMenuStrip trayContext;
+        private System.Windows.Forms.ToolStripMenuItem 오더실행ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 열기ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 종료ToolStripMenuItem;
     }
 }

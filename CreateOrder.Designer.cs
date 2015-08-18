@@ -48,7 +48,7 @@
             this.tooltip = new System.Windows.Forms.Label();
             this.RadioIsCopy = new System.Windows.Forms.RadioButton();
             this.RadioIsMove = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dubCombobox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.RootSearch = new System.Windows.Forms.CheckBox();
             this.RealTimeWatchService = new System.Windows.Forms.CheckBox();
@@ -270,18 +270,18 @@
             this.RadioIsMove.Text = "이동";
             this.RadioIsMove.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // dubCombobox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            Properties.Resources.OverwriteString,
-            Properties.Resources.RenamingString,
-            Properties.Resources.NoneString});
-            this.comboBox1.Location = new System.Drawing.Point(103, 251);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(155, 20);
-            this.comboBox1.TabIndex = 9;
+            this.dubCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dubCombobox.FormattingEnabled = true;
+            this.dubCombobox.Items.AddRange(new object[] {
+            global::SQUI.Properties.Resources.OverwriteString,
+            global::SQUI.Properties.Resources.RenamingString,
+            global::SQUI.Properties.Resources.NoneString});
+            this.dubCombobox.Location = new System.Drawing.Point(103, 251);
+            this.dubCombobox.Name = "dubCombobox";
+            this.dubCombobox.Size = new System.Drawing.Size(155, 20);
+            this.dubCombobox.TabIndex = 9;
             // 
             // label3
             // 
@@ -304,15 +304,15 @@
             this.RootSearch.UseVisualStyleBackColor = true;
             this.RootSearch.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
-            // checkBox1
+            // RealTimeWatchService
             // 
             this.RealTimeWatchService.AutoSize = true;
             this.RealTimeWatchService.Location = new System.Drawing.Point(14, 224);
-            this.RealTimeWatchService.Name = "checkBox1";
-            this.RealTimeWatchService.Size = new System.Drawing.Size(88, 16);
+            this.RealTimeWatchService.Name = "RealTimeWatchService";
+            this.RealTimeWatchService.Size = new System.Drawing.Size(100, 16);
             this.RealTimeWatchService.TabIndex = 3;
             this.RealTimeWatchService.TabStop = false;
-            this.RealTimeWatchService.Text = "실시간 감시";
+            this.RealTimeWatchService.Text = "실시간 동기화";
             this.RealTimeWatchService.UseVisualStyleBackColor = true;
             this.RealTimeWatchService.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
@@ -322,7 +322,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 317);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dubCombobox);
             this.Controls.Add(this.RadioIsMove);
             this.Controls.Add(this.RadioIsCopy);
             this.Controls.Add(this.tooltip);
@@ -345,10 +345,10 @@
             this.Controls.Add(this.TextBoxDestination);
             this.Controls.Add(this.TextBoxdeparture);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = global::SQUI.Properties.Resources.icon;
             this.MaximizeBox = false;
             this.Name = "CreateOrder";
             this.ShowIcon = false;
-            this.Icon = Properties.Resources.icon;
             this.ShowInTaskbar = false;
             this.Text = "CreateOrder";
             this.ResumeLayout(false);
@@ -378,7 +378,7 @@
         private System.Windows.Forms.Label tooltip;
         private System.Windows.Forms.RadioButton RadioIsCopy;
         private System.Windows.Forms.RadioButton RadioIsMove;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox dubCombobox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox RootSearch;
         private System.Windows.Forms.CheckBox RealTimeWatchService;

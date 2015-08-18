@@ -30,6 +30,12 @@ namespace SQUI
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Setting.Save();
+            if(Watcher.Count > 0 && this.Visible)
+            {
+                e.Cancel = true;
+                this.Hide();
+                trayIcon.ShowBalloonTip(2, "여전히 실행 중!", "하나 이상의 실시간 동기화가 실행중입니다", ToolTipIcon.Info);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -172,6 +178,21 @@ namespace SQUI
                     RunButton.Enabled = button1.Enabled = button2.Enabled = button3.Enabled = button4.Enabled = listView1.Enabled = true;
                 }));
             }
+        }
+
+        private void 종료ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void 오더실행ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frameworkRunner.RunWorkerAsync();
+        }
+
+        private void 열기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
         }
     }
 }

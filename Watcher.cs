@@ -13,6 +13,8 @@ namespace SQUI
         FileSystemWatcher _watcher;
         ManagedDirectory info;
 
+        public static int Count { get { return __watchers.Count; } }
+
         public int Index { get; private set; }
 
         public static int Create(ManagedDirectory info)
