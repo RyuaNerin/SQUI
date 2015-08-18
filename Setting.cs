@@ -22,6 +22,13 @@ namespace SQUI
                     BinaryFormatter binFormatter = new BinaryFormatter();
                     Orders = binFormatter.Deserialize(ReadStream) as List<ManagedDirectory>;
                 }
+                foreach (var item in Orders)
+                {
+                    if (item.Enabled && item.Option.RealtimeWatch)
+                    {
+                        item.WatcherIndex = Watcher.Create(item);
+                    }
+                }
             }
             else
             {

@@ -25,6 +25,8 @@ namespace SQUI
             InitializeComponent();
             folderBrowserDialog1.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             this.index = index;
+            Watcher.Stop(d.WatcherIndex);
+            Watcher.Remove(d.WatcherIndex);
 
             TextBoxdeparture.Text = d.DepartureFolder;
             TextBoxDestination.Text = d.DestinationFolder;
@@ -95,18 +97,20 @@ namespace SQUI
 
             if(d.Option.Duplicate == DuplicateProcessing.Overwrite)
             {
-                comboBox1.Text = "새 파일로 덮어쓰기";
+                
+                comboBox1.Text = Properties.Resources.OverwriteString;
             }
             else if(d.Option.Duplicate == DuplicateProcessing.Renaming)
             {
-                comboBox1.Text = "이름 뒤에 고유한 숫자 추가";
+                comboBox1.Text = Properties.Resources.RenamingString;
             }
             else if(d.Option.Duplicate == DuplicateProcessing.None)
             {
-                comboBox1.Text = "이동하지 않음";
+                comboBox1.Text = Properties.Resources.NoneString;
             }
 
             RootSearch.Checked = d.Option.RootSerach;
+            RealTimeWatchService.Checked = d.Option.RealtimeWatch;
             
         }
 
@@ -154,40 +158,45 @@ namespace SQUI
             if (CheckBoxFileExtensions.Checked == false) TextBoxFileExtensions.Text = string.Empty;
 
             DuplicateProcessing dp = DuplicateProcessing.None;
-            if (comboBox1.Text == "새 파일로 덮어쓰기")
+            if (comboBox1.Text == Properties.Resources.OverwriteString)
             {
                 dp = DuplicateProcessing.Overwrite;
             }
-            else if (comboBox1.Text == "이름 뒤에 고유한 숫자 추가")
+            else if (comboBox1.Text == Properties.Resources.RenamingString)
             {
                 dp = DuplicateProcessing.Renaming;
             }
 
             var option = new Option(
-                    TextBoxFileExtensions.Text.Split(' '),
-                    TextBoxInclude.Text.Split(' '),
-                    TextBoxDecludeStrings.Text.Split(' '),
-                    TextBoxOptionStrings.Text.Split(' '),
+                    GetArrayFromTextbox(TextBoxFileExtensions.Text),
+                    GetArrayFromTextbox(TextBoxInclude.Text),
+                    GetArrayFromTextbox(TextBoxDecludeStrings.Text),
+                    GetArrayFromTextbox(TextBoxOptionStrings.Text),
                     RadioIsCopy.Checked,
                     dp,
-                    RootSearch.Checked
+                    RootSearch.Checked,
+                    RealTimeWatchService.Checked
+                    );
+
+            var gen = new ManagedDirectory(
+                    TextBoxdeparture.Text,
+                    TextBoxDestination.Text,
+                    option
                     );
             if(this.index == -1) // new obj
             {
-                Setting.Orders.Add(new ManagedDirectory(
-                    TextBoxdeparture.Text,
-                    TextBoxDestination.Text,
-                    option
-                    ));
+                Setting.Orders.Add(gen);
             }
             else
             {
-                Setting.Orders[index] = new ManagedDirectory(
-                    TextBoxdeparture.Text,
-                    TextBoxDestination.Text,
-                    option
-                    );
+                Setting.Orders[index] = gen;
             }
+
+            if (gen.Enabled && gen.Option.RealtimeWatch)
+            {
+                gen.WatcherIndex = Watcher.Create(gen);
+            }
+
             this.Close();
         }
 
@@ -240,6 +249,12 @@ namespace SQUI
             {
                 TextBoxDestination.Text = paths[0];
             }
+        }
+
+        private string[] GetArrayFromTextbox(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return new string[] { };
+            else return str.Split(' ');
         }
     }
 }

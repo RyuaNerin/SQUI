@@ -21,7 +21,6 @@ namespace SQUI
             {
                 if (order.Enabled)
                 {
-
                     if (!Directory.Exists(order.DepartureFolder))
                     {
                         MessageBox.Show(string.Format("[ {0} ]는 올바른 경로가 아닙니다", order.DepartureFolder));
@@ -54,59 +53,7 @@ namespace SQUI
             {
                 var fn = Path.GetFileName(file);
 
-                bool extensionPass = false;
-                bool includePass = true;
-                bool decludePass = true;
-                bool optionPass = false;
-
-                if (order.Option.FileExtensions.Count == 0)
-                {
-                    extensionPass = true;
-                }
-                else
-                {
-                    foreach (var item in order.Option.FileExtensions)
-                    {
-                                if (Path.GetExtension(fn) == item)
-                        {
-                            extensionPass = true;
-                        }
-                    }
-                }
-
-                foreach (var item in order.Option.IncludeStrings)
-                {
-                    if (!fn.Contains(item))
-                    {
-                        includePass = false;
-                    }
-                }
-
-
-                foreach (var item in order.Option.DecludeStrings)
-                {
-                    if (fn.Contains(item))
-                    {
-                        decludePass = false;
-                    }
-                }
-
-                if (order.Option.OptionStrings.Count == 0)
-                {
-                    optionPass = true;
-                }
-                else
-                {
-                    foreach (var item in order.Option.OptionStrings)
-                    {
-                        if (fn.Contains(item))
-                        {
-                            optionPass = true;
-                        }
-                    }
-                }
-
-                if (extensionPass && includePass && decludePass && optionPass)
+                if (isManagedFile(fn, order))
                 {
                     var c_dir = a_dir.Replace(order.DepartureFolder, order.DestinationFolder);
                     var dest = Path.Combine(c_dir, fn);
@@ -137,7 +84,7 @@ namespace SQUI
                     if (!Directory.Exists(c_dir)) Directory.CreateDirectory(c_dir);
                     if (order.Option.isCopy)
                     {
-                        File.Copy(file, dest);
+                        File.Copy(file, dest, true);
                     }
                     else
                     {
@@ -145,6 +92,63 @@ namespace SQUI
                     }
                 }
             }
+        }
+
+        public static bool isManagedFile(string path, ManagedDirectory order)
+        {
+            bool extensionPass = false;
+            bool includePass = true;
+            bool decludePass = true;
+            bool optionPass = false;
+
+            if (order.Option.FileExtensions.Count == 0)
+            {
+                extensionPass = true;
+            }
+            else
+            {
+                foreach (var item in order.Option.FileExtensions)
+                {
+                    if (Path.GetExtension(path) == item)
+                    {
+                        extensionPass = true;
+                    }
+                }
+            }
+
+            foreach (var item in order.Option.IncludeStrings)
+            {
+                if (!path.Contains(item))
+                {
+                    includePass = false;
+                }
+            }
+
+
+            foreach (var item in order.Option.DecludeStrings)
+            {
+                if (path.Contains(item))
+                {
+                    decludePass = false;
+                }
+            }
+
+            if (order.Option.OptionStrings.Count == 0)
+            {
+                optionPass = true;
+            }
+            else
+            {
+                foreach (var item in order.Option.OptionStrings)
+                {
+                    if (path.Contains(item))
+                    {
+                        optionPass = true;
+                    }
+                }
+            }
+
+            return extensionPass & includePass & decludePass & optionPass;
         }
     }
 }

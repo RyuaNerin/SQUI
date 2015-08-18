@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.RunButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -41,11 +42,12 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.frameworkRunner = new System.ComponentModel.BackgroundWorker();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // RunButton
@@ -145,6 +147,12 @@
             this.columnHeader8.Text = "중복 처리";
             this.columnHeader8.Width = 83;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.DisplayIndex = 5;
+            this.columnHeader9.Text = "하위 폴더";
+            this.columnHeader9.Width = 80;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(94, 42);
@@ -175,15 +183,15 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // columnHeader9
-            // 
-            this.columnHeader9.DisplayIndex = 5;
-            this.columnHeader9.Text = "하위 폴더";
-            this.columnHeader9.Width = 80;
-            // 
             // frameworkRunner
             // 
             this.frameworkRunner.DoWork += new System.ComponentModel.DoWorkEventHandler(this.frameworkRunner_DoWork);
+            // 
+            // trayIcon
+            // 
+            this.trayIcon.Text = "TrayIcon";
+            this.trayIcon.Visible = true;
+            this.trayIcon.Icon = Properties.Resources.icon;
             // 
             // MainForm
             // 
@@ -196,9 +204,9 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.RunButton);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = Properties.Resources.icon;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "SQUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
 
@@ -223,5 +231,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.ComponentModel.BackgroundWorker frameworkRunner;
+        private System.Windows.Forms.NotifyIcon trayIcon;
     }
 }

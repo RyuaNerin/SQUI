@@ -29,6 +29,8 @@ namespace SQUI
         /// 고급 작업에 사용되는 조건들입니다.
         /// </summary>
         public Option Option { get; private set; }
+
+        public int WatcherIndex { get; set; }
         
         #endregion
 
@@ -38,6 +40,7 @@ namespace SQUI
             this.DepartureFolder = departure;
             this.DestinationFolder = destination;
             this.Option = option;
+            WatcherIndex = -1;
         }
     }
 
@@ -82,9 +85,14 @@ namespace SQUI
         /// </summary>
         public bool RootSerach { get; private set; }
 
+        /// <summary>
+        /// 실시간 감시 기능 여부
+        /// </summary>
+        public bool RealtimeWatch { get; private set; }
+
         #endregion
 
-        public Option(string[] extensions, string[] includes, string[] decluides, string[] options, bool isCopy, DuplicateProcessing dp, bool root)
+        public Option(string[] extensions, string[] includes, string[] decluides, string[] options, bool isCopy, DuplicateProcessing dp, bool root, bool realtimeWatch)
         {
             FileExtensions = extensions.ToList();
             IncludeStrings = includes.ToList();
@@ -93,6 +101,7 @@ namespace SQUI
             this.isCopy = isCopy;
             Duplicate = dp;
             RootSerach = root;
+            RealtimeWatch = realtimeWatch;
         }
     }
 

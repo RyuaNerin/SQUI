@@ -95,15 +95,15 @@ namespace SQUI
                 var dpstr = string.Empty;
                 if (item.Option.Duplicate == DuplicateProcessing.Overwrite)
                 {
-                    dpstr = "새 파일로 덮어쓰기";
+                    dpstr = Properties.Resources.OverwriteString;
                 }
                 else if (item.Option.Duplicate == DuplicateProcessing.Renaming)
                 {
-                    dpstr = "이름 뒤에 고유한 숫자 추가";
+                    dpstr = Properties.Resources.RenamingString;
                 }
                 else if (item.Option.Duplicate == DuplicateProcessing.None)
                 {
-                    dpstr = "이동하지 않음";
+                    dpstr = Properties.Resources.NoneString;
                 }
                 gen.SubItems.Add(dpstr);
                 gen.SubItems.Add((item.Option.RootSerach) ? "포함" : "미포함");
@@ -144,7 +144,20 @@ namespace SQUI
         {
             if (listView1.SelectedItems.Count > 0)
             {
-                Setting.Orders[listView1.SelectedItems[0].Index].Enabled = !Setting.Orders[listView1.SelectedItems[0].Index].Enabled;
+                var rep = Setting.Orders[listView1.SelectedItems[0].Index];
+                Setting.Orders[listView1.SelectedItems[0].Index].Enabled = !rep.Enabled;
+
+                if (rep.Option.RealtimeWatch)
+                {
+                    if (rep.Enabled)
+                    {
+                        Watcher.Start(rep.WatcherIndex);
+                    }
+                    else
+                    {
+                        Watcher.Stop(rep.WatcherIndex);
+                    }
+                }
                 RefrashOrderList();
             }
         }

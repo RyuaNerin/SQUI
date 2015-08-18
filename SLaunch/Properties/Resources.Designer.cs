@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SQUI.Properties {
+namespace SLaunch.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SQUI.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SQUI.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SLaunch.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -67,33 +67,6 @@ namespace SQUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   이동하지 않음과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string NoneString {
-            get {
-                return ResourceManager.GetString("NoneString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   새 파일로 덮어쓰기과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string OverwriteString {
-            get {
-                return ResourceManager.GetString("OverwriteString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   이름 뒤에 고유한 숫자 추가과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string RenamingString {
-            get {
-                return ResourceManager.GetString("RenamingString", resourceCulture);
             }
         }
     }
